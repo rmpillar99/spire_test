@@ -9,4 +9,8 @@
     <PackageReference Include="Spire.PDF" Version="5.4.21" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="TestDocument.txt" CopyToOutputDirectory="Always" />
+    <None Include="sample.pdf" CopyToOutputDirectory="Always" />
+  </ItemGroup>
 </Project>
