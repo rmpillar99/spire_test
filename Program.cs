@@ -6,6 +6,7 @@ using Spire.Pdf;
 using System.IO;
 using Spire.Pdf.Graphics;
 using System.Drawing;
+using Spire.Pdf.General.Find;
 
 namespace spire
 {
@@ -15,15 +16,44 @@ namespace spire
         {
             GeneratePDF();
             ReadSamplePDF();
+
+            //ReplaceDataInPDF();
         }
 
+        private static void ReplaceDataInPDF()
+        {
+            PdfDocument doc = new PdfDocument("TxtToPDf.pdf");
+            PdfPageBase page = doc.Pages[0];
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add("text", "TEXT");
+            FindAndReplace(doc, dictionary);
+            doc.SaveToFile("result.pdf");
+        }
+
+        public static void FindAndReplace(PdfDocument documents, Dictionary<string, string> dictionary)
+        {
+            PdfTextFind[] result = null;
+            foreach (var word in dictionary)
+            {
+                foreach (PdfPageBase page in documents.Pages)
+                {
+                    result = page.FindText(word.Key).Finds;
+                    foreach (PdfTextFind find in result)
+                    {
+                        //replace word in pdf                   
+                        find.ApplyRecoverString(word.Value, System.Drawing.Color.White, true);
+                    }
+                }
+            }
+        }
+        
         private static void ReadSamplePDF()
         {
             var document = new PdfDocument();
             document.LoadFromFile("sample.pdf");
 
             var content = new StringBuilder();
-        
+
             foreach (PdfPageBase page in document.Pages)
             {
                 content.Append(page.ExtractText());
