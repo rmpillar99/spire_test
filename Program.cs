@@ -7,6 +7,7 @@ using System.IO;
 using Spire.Pdf.Graphics;
 using System.Drawing;
 using Spire.Pdf.General.Find;
+using Spire.Pdf.Graphics.Fonts;
 
 namespace spire
 {
@@ -16,13 +17,17 @@ namespace spire
         {
             GeneratePDF();
             ReadSamplePDF();
+            
+            //PdfDocument doc = new PdfDocument("TxtToPDf.pdf");
+            //PdfUsedFont[] fonts = doc.UsedFonts;
 
-            //ReplaceDataInPDF();
+
+            ReplaceDataInPDF();
         }
 
         private static void ReplaceDataInPDF()
         {
-            PdfDocument doc = new PdfDocument("TxtToPDf.pdf");
+            PdfDocument doc = new PdfDocument("sample.pdf");
             PdfPageBase page = doc.Pages[0];
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add("text", "TEXT");
