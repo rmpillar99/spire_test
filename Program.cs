@@ -44,10 +44,10 @@ namespace spire
             var font = new PdfFont(PdfFontFamily.Helvetica, 11);
 
             var format = new PdfStringFormat();
-            format.LineSpacing = 20f;
+            format.LineSpacing = 40f;
 
             var brush = PdfBrushes.Black;
-            float y = 0;
+            float y = 20;
             var textLayout = new PdfTextLayout();
             textLayout.Break = PdfLayoutBreakType.FitPage;
             textLayout.Layout = PdfLayoutType.Paginate;
