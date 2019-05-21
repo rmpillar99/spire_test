@@ -8,3 +8,18 @@ Runs flawlessly in Linux
 2. run `dotnet run`
     - this will generate a PDF (TxtToPDF.pdf) from the text inside TestDocument.txt
     - will generate a text file (TextFromPDF.txt) of the text within sample.pdf
+
+Docker instructions:
+
+`docker build . -t spire_test`
+`docker run --name spire_test spire_test`
+`docker commit spire_test test_image`
+`docker run -it -v /Users/[your_username]/image_out/:/app/out --entrypoint=sh test_image`
+
+Commands in shell:
+
+`cp result.pdf TextFromPDF.txt TxtToPDf.pdf out`
+
+Then check your mounted local volume (/Users/[your_username]/image_out/)
+
+Unfortunately replace looks like garbage :(
