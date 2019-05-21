@@ -18,5 +18,6 @@ RUN apt-get update \
         libx11-dev \
      && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
+CMD mkdir /app/out
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "spire.dll"]
